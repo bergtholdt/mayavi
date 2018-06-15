@@ -77,7 +77,7 @@ class MlabSource(HasTraits):
                     aa.update()
                 md.data_changed = True
 
-    def set(self, trait_change_notify=True, **traits):
+    def trait_set(self, trait_change_notify=True, **traits):
         """Shortcut for setting object trait attributes.
 
         This is an overridden method that will make changing multiple
@@ -390,9 +390,9 @@ class MArraySource(MlabSource):
             ds = self.m_data
         old_scalar = ds.scalar_data
         ds.trait_set(vector_data=vectors,
-               origin=[x.min(), y.min(), z.min()],
-               spacing=[dx, dy, dz],
-               scalar_data=scalars)
+                     origin=[x.min(), y.min(), z.min()],
+                     spacing=[dx, dy, dz],
+                     scalar_data=scalars)
         if scalars is old_scalar:
             ds._scalar_data_changed(scalars)
 
@@ -602,8 +602,8 @@ class MArray2DSource(MlabSource):
             ds = self.m_data
         old_scalar = ds.scalar_data
         ds.trait_set(origin=[x.min(), y.min(), 0],
-               spacing=[dx, dy, 1],
-               scalar_data=scalars)
+                     spacing=[dx, dy, 1],
+                     scalar_data=scalars)
         if old_scalar is scalars:
             ds._scalar_data_changed(scalars)
 

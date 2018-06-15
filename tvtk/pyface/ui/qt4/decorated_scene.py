@@ -150,6 +150,7 @@ class DecoratedScene(Scene):
         if self._panel is not None:
             path = popup_save(self._panel)
             if len(path) > 0:
+                wildcard = ''
                 # The extension of the path will determine the actual
                 # image type saved.
                 self.save(path)

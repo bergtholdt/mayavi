@@ -128,7 +128,8 @@ class EngineManager(HasTraits):
         if not engine.running:
             warnings.warn('Engine is not running', stacklevel=2)
         self.current_engine = engine
-        registry.register_engine(engine)
+        if engine not in registry.engines.values():
+            registry.register_engine(engine)
 
     def new_engine(self):
         """ Creates a new engine, envisage or not depending on the

@@ -45,7 +45,7 @@ class ClassNameTest(unittest.TestCase):
         pref = self.pref
         mirror = self.mirror
         # Save original state.
-        saved = pref.get()
+        saved = pref.trait_get()
         pref.trait_set(bg = 'white', width=20, show=True)
         self.assertEqual(pref.bg, mirror.bg)
         self.assertEqual(pref.width, mirror.width)
@@ -57,7 +57,7 @@ class ClassNameTest(unittest.TestCase):
         """mirror must not sync changes back to the original preferences."""
         pref = self.pref
         mirror = self.mirror
-        saved = pref.get()
+        saved = pref.trait_get()
         mirror.trait_set(bg = 'white', width=20, show=True)
         self.assertNotEqual(pref.bg, mirror.bg)
         self.assertNotEqual(pref.width, mirror.width)
@@ -70,7 +70,7 @@ class ClassNameTest(unittest.TestCase):
         """Are Mirror's preferences saved correctly"""
         pref = self.pref
         mirror = self.mirror
-        saved = pref.get()
+        saved = pref.trait_get()
         mirror.trait_set(bg = 'white', width=20, show=True)
         mirror.save()
         self.assertEqual(pref.bg, mirror.bg)

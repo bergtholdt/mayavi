@@ -199,7 +199,7 @@ class ShadowProperty(TraitType):
             value = trt.validate(object, name, value)
         return value
 
-    def get(self, object, name):
+    def trait_get(self, object, name):
         """Get the value of the trait."""
         shadow = self._get_shadow(name)
         d = object.__dict__
@@ -208,9 +208,13 @@ class ShadowProperty(TraitType):
         else:
             return None
 
-    def set(self, object, name, value):
+    def get(self, object, name):
+        """Get the value of the trait."""
+        return self.trait_get(object, name)
+
+    def trait_set(self, object, name, value):
         """Set the value of the trait."""
-        old = self.get(object, name)
+        old = self.trait_get(object, name)
         shadow = self._get_shadow(name)
         object.__dict__[shadow] = value
         # Fire a trait property changed.
@@ -220,6 +224,10 @@ class ShadowProperty(TraitType):
                 fire = False
         if fire and self._check_notification(object):
             object.trait_property_changed(name, old, value)
+
+    def set(self, object, name, value):
+        """Set the value of the trait."""
+        return self.trait_set(object, name, value)
 
     def _get_shadow(self, name):
         """Get the shadow attribute name to use."""
