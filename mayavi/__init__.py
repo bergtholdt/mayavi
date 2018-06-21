@@ -15,7 +15,7 @@ __requires__ = [
     'pygments',  # This is only needed for the Qt backend but we add it anyway.
     'traits>=4.6.0',
     'traitsui>=6.0.0',
-    'vtk'
+    #'vtk'
 ]
 
 __extras_require__ = {
