@@ -346,7 +346,8 @@ class LightManager(HasTraits):
         # to zero and never change that.  Note that if this light is
         # turned off, and no other lights are "on", then VTK will
         # create a new light!
-        ren.lights[0].intensity = 0.0
+        if ren.lights:
+            ren.lights[0].intensity = 0.0
 
         # Create the lights.
         self.lights = []
